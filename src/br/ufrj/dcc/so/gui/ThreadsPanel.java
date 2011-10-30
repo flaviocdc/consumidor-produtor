@@ -1,18 +1,16 @@
 package br.ufrj.dcc.so.gui;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
+
+import br.ufrj.dcc.so.Main;
 
 public class ThreadsPanel extends JPanel {
 
-	private JList consumidoresList;
-	private JList produtoresList;
+	private TabelaEstados tabelaConsumidores;
+	private TabelaEstados tabelaProdutores;
 	
 	public ThreadsPanel() {
 		super();
@@ -21,30 +19,16 @@ public class ThreadsPanel extends JPanel {
 	}
 	
 	public void init() {
-		consumidoresList = new JList(new String[] { "Teste1", "Teste2" });
-		consumidoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		consumidoresList.setLayoutOrientation(JList.VERTICAL);
-		consumidoresList.setVisibleRowCount(-1);
-		consumidoresList.setBorder(BorderFactory.createTitledBorder("Consumidores"));
-		consumidoresList.setPreferredSize(new Dimension(150, 150));
+		tabelaConsumidores = new TabelaEstados(Main.instance().getConsumidores());
+		tabelaConsumidores.setBorder(BorderFactory.createTitledBorder("Consumidores"));
 
-		JScrollPane consumidoresListScroller = new JScrollPane(consumidoresList);
-		consumidoresListScroller.setSize(100, 100);
-
-		produtoresList = new JList(new String[] { "Teste3", "Teste4" });
-		produtoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		produtoresList.setLayoutOrientation(JList.VERTICAL);
-		produtoresList.setVisibleRowCount(-1);
-		produtoresList.setBorder(BorderFactory.createTitledBorder("Produtores"));
-		produtoresList.setPreferredSize(new Dimension(150, 150));
-		
-		JScrollPane produtoresListScroller = new JScrollPane(produtoresList);
-		produtoresListScroller.setPreferredSize(new Dimension(100, 100));
+		tabelaProdutores = new TabelaEstados(Main.instance().getProdutores());
+		tabelaProdutores.setBorder(BorderFactory.createTitledBorder("Produtores"));
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		add(consumidoresList);
-		add(produtoresList);
+		add(tabelaConsumidores);
+		add(tabelaProdutores);
 	}
 
 }

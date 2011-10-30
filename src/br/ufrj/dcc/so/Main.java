@@ -8,6 +8,8 @@ import br.ufrj.dcc.so.filas.FilaCaseiraLimitada;
 
 public class Main {
 
+	private static Main instance;
+	
 	private static final int NUM_PRODUTORES = 3;
 	private static final int NUM_CONSUMIDORES = 5;
 	public static final int NUM_PRODUTOS = 1000;
@@ -21,13 +23,24 @@ public class Main {
 	private static Fila<String> fila = new FilaCaseiraLimitada<String>(50); 
 	//private static Fila<String> fila = new FilaBuiltin<String>(50);
 
-	private List<Thread> produtores = new ArrayList<Thread>(NUM_PRODUTORES);
-	private List<Thread> consumidores = new ArrayList<Thread>(NUM_CONSUMIDORES);
+	private List<ThreadComEstados> produtores = new ArrayList<ThreadComEstados>(NUM_PRODUTORES);
+	private List<ThreadComEstados> consumidores = new ArrayList<ThreadComEstados>(NUM_CONSUMIDORES);
 	
 	public static void main(String[] args) {
-		new Main().exec();
+		Main m = instance();
+		
+		m.initThreads();
+		m.exec();
 	}
 	
+	public void exec() {
+		for (Thread t : produtores)
+			t.start();
+		
+		for (Thread t : consumidores)
+			t.start();
+	}
+
 	public static Fila<String> getFila() {
 		return fila;
 	}
@@ -56,26 +69,37 @@ public class Main {
 		}
 	}
 	
-	public void exec() {
+	public void initThreads() {
 		for (int i = 0; i < NUM_PRODUTORES; i++) {
-			Thread t = new Produtor();
+			ThreadComEstados t = new Produtor();
 			t.setName("Produtor-" + i);
 			t.setDaemon(false);
 			
 			produtores.add(t);
-			
-			t.start();
 		}
 		
 		for (int i = 0; i < NUM_CONSUMIDORES; i++) {
-			Thread t = new Consumidor();
+			ThreadComEstados t = new Consumidor();
 			t.setName("Consumidor-" + i);
 			t.setDaemon(false);
 			
 			consumidores.add(t);
-			
-			t.start();
 		}
 	}
+
+	public List<ThreadComEstados> getProdutores() {
+		return produtores;
+	}
+
+	public List<ThreadComEstados> getConsumidores() {
+		return consumidores;
+	}
 	
+	public static Main instance() {
+		if (instance == null) {
+			instance = new Main();
+		}
+		
+		return instance;
+	}
 }

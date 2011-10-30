@@ -13,4 +13,8 @@ public class ThreadComEstados extends Thread {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
+	
+	public ThreadComEstados() {
+		setEstado(Estado.NOVO);
+	}
 }
