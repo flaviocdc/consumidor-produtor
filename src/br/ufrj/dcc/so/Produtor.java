@@ -1,6 +1,6 @@
 package br.ufrj.dcc.so;
 
-public class Produtor implements Runnable {
+public class Produtor extends ThreadComEstados {
 
 	@Override
 	public void run() {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufrj.dcc.so.filas.Fila;
-import br.ufrj.dcc.so.filas.FilaBuiltin;
+import br.ufrj.dcc.so.filas.FilaCaseiraLimitada;
 
 public class Main {
 
@@ -18,8 +18,8 @@ public class Main {
 	private static final Object mutexConsumidos = new Object();
 	private static int NUM_CONSUMIDOS = 0;
 	
-	//private static Fila<String> fila = new FilaCaseiraLimitada<String>(50); 
-	private static Fila<String> fila = new FilaBuiltin<String>(50);
+	private static Fila<String> fila = new FilaCaseiraLimitada<String>(50); 
+	//private static Fila<String> fila = new FilaBuiltin<String>(50);
 
 	private List<Thread> produtores = new ArrayList<Thread>(NUM_PRODUTORES);
 	private List<Thread> consumidores = new ArrayList<Thread>(NUM_CONSUMIDORES);
@@ -58,7 +58,7 @@ public class Main {
 	
 	public void exec() {
 		for (int i = 0; i < NUM_PRODUTORES; i++) {
-			Thread t = new Thread(new Produtor());
+			Thread t = new Produtor();
 			t.setName("Produtor-" + i);
 			t.setDaemon(false);
 			
@@ -68,7 +68,7 @@ public class Main {
 		}
 		
 		for (int i = 0; i < NUM_CONSUMIDORES; i++) {
-			Thread t = new Thread(new Consumidor());
+			Thread t = new Consumidor();
 			t.setName("Consumidor-" + i);
 			t.setDaemon(false);
 			

@@ -1,6 +1,6 @@
 package br.ufrj.dcc.so;
 
-public class Consumidor implements Runnable {
+public class Consumidor extends ThreadComEstados {
 
 	@Override
 	public void run() {
