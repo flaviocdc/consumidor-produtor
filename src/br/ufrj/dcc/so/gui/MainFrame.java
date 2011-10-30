@@ -26,6 +26,7 @@ public class MainFrame extends JFrame {
 		add(threadsPanel);
 		
 		setSize(500, 500);
+		
 		setVisible(true);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
