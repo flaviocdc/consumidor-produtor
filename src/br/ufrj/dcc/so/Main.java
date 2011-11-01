@@ -22,6 +22,7 @@ public class Main {
 	
 	private static Fila<String> fila = new FilaCaseiraLimitada<String>(50); 
 	//private static Fila<String> fila = new FilaBuiltin<String>(50);
+	//private static Fila<String> fila = new FilaMultiplosLeitores2<String>();
 
 	private List<ThreadComEstados> produtores = new ArrayList<ThreadComEstados>(NUM_PRODUTORES);
 	private List<ThreadComEstados> consumidores = new ArrayList<ThreadComEstados>(NUM_CONSUMIDORES);

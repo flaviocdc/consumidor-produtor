@@ -41,7 +41,7 @@ public class MainFrame extends JFrame {
 		
 		add(threadsPanel);
 		
-		setSize(500, 500);
+		setSize(500, 350);
 		
 		setVisible(true);
 		

@@ -20,10 +20,10 @@ public class ThreadsPanel extends JPanel {
 	
 	public void init() {
 		tabelaConsumidores = new TabelaEstados(Main.instance().getConsumidores());
-		tabelaConsumidores.setBorder(BorderFactory.createTitledBorder("Consumidores"));
+		//tabelaConsumidores.setBorder(BorderFactory.createTitledBorder("Consumidores"));
 
 		tabelaProdutores = new TabelaEstados(Main.instance().getProdutores());
-		tabelaProdutores.setBorder(BorderFactory.createTitledBorder("Produtores"));
+		//tabelaProdutores.setBorder(BorderFactory.createTitledBorder("Produtores"));
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
